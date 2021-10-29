@@ -50,4 +50,12 @@ class User extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer', 'store_id' => 'integer', 'gender' => 'integer', 'age' => 'integer', 'carte' => 'integer', 'status' => 'integer', 'is_in' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+
+
+    public function coach()
+    {
+        return $this->hasOne(Coach::class);
+    }
+
+
 }
