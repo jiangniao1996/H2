@@ -11,15 +11,19 @@ declare(strict_types=1);
  */
 namespace App\Controller;
 
+use EasyWeChat\Factory;
+use EasyWeChat\MiniProgram\Application;
+
 class IndexController extends AbstractController
 {
     public function index()
     {
         $user = $this->request->input('user', 'Hyperf');
         $method = $this->request->getMethod();
-
+        $user_mini_program = new Application(config('wechat.mini_program.user'));
+        $res = $user_mini_program->auth->getAccessToken();
         return [
-            'method' => $method,
+            'method' => json_encode($res),
             'message' => "Hello {$user}.",
         ];
     }
